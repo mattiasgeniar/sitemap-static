@@ -38,7 +38,7 @@ module.exports = function(stream, o) {
       var len = ignore.length;
       for (var i = 0; i < len; i++) {
           var l = ignore[i].length;
-          if (ignore[i].substr(l - 5) !== '.html') {
+          if (ignore[i].substr(l - 4) !== '.php') {
               ignore_folders.push(new RegExp('^' + ignore[i]));
           }
       }
@@ -46,7 +46,7 @@ module.exports = function(stream, o) {
 
   finder.on('file', function(file /*, stat */) {
 
-      if (file.indexOf('.html') === -1 || ignore.indexOf(file) !== -1) {
+      if (file.indexOf('.php') === -1 || ignore.indexOf(file) !== -1) {
         return;
       }
 
