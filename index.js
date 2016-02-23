@@ -27,6 +27,7 @@ module.exports = function(stream, o) {
   var finder = findit(o.findRoot || '.');
 
   var prefix = o.prefix || '';
+  var file_suffix = o.file_suffix || '.html';
   var ignore_file = o.ignoreFile || '';
   var ignore = [];
   var ignore_folders = [];
@@ -38,7 +39,7 @@ module.exports = function(stream, o) {
       var len = ignore.length;
       for (var i = 0; i < len; i++) {
           var l = ignore[i].length;
-          if (ignore[i].substr(l - 4) !== '.php') {
+          if (ignore[i].substr(l - file_suffix.length) !== file_suffix) {
               ignore_folders.push(new RegExp('^' + ignore[i]));
           }
       }
@@ -46,7 +47,7 @@ module.exports = function(stream, o) {
 
   finder.on('file', function(file /*, stat */) {
 
-      if (file.indexOf('.php') === -1 || ignore.indexOf(file) !== -1) {
+      if (file.indexOf(file_suffix) === -1 || ignore.indexOf(file) !== -1) {
         return;
       }
 

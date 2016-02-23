@@ -15,6 +15,10 @@ files with `.html` extensions to the sitemap.
 
     sitemap-static --prefix=http://foo.bar/foo/ . > sitemap.xml
 
+Optionally tell which files extension to scan:
+
+    sitemap-static --prefix=http://foo.bar/foo/ file_suffix=.php . > sitemap.xml
+
 ## library API
 
 ```javascript
